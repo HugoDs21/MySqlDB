@@ -1,2 +1,2 @@
-# MySqlDB
-Data Bases MySql querys and stuff
+# BaseDados
+Base de Dados 2* Semestre

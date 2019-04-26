@@ -1,0 +1,16 @@
+1.
+  SELECT COUNTRY INTO country_name
+  FROM CUSTOMER WHERE CustomerId = customer_id;
+
+  IF country_name = 'United States' THEN
+    SET c = c + 1;
+  END IF;
+
+$ SELECT getChargeValue('2019-04-11 20:59:59', 571, 561);
+
+  select Name INTO region_name
+  from REGION where regionid in (select Regionid from COUNTRY where name = country_name);
+
+$ SELECT getChargeValue('2019-04-11 20:59:59', 571, 52);
+
+ 2.

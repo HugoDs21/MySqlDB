@@ -1,0 +1,51 @@
+1.1
+  1 SELECT  Nome, YEAR(DataNasc) from UTENTE;
+  2 select Nome, Month(DataNasc), DAY(DataNasc) FROM UTENTE WHERE YEAR(DataNasc) > 2000;
+  3 select Nome from UTENTE WHERE Nome LIKE 'Pedro%' OR Nome LIKE '%Silva';
+  4 select ISBN, Num from CÓPIA WHERE EmpUtente IS NOT NULL AND EmpUtente > 1;
+  5 select CONCAT(Título,', ', Editora,', ', Ano,', ', ISBN) from LIVRO;
+
+1.2
+  1 UPDATE UTENTE SET EMAIL=UPPER(EMAIL);
+  2 UPDATE CÓPIA SET Estante = 'E99', Prateleira = Prateleira+1 WHERE Estante LIKE 'E1_';
+
+2.1
+  1 Email VARCHAR(32) DEFAULT NULL,
+  2 Secção VARCHAR(3) NOT NULL DEFAULT 'L',
+  3 EmpUtente INT DEFAULT NULL, EmpData DATE DEFAULT NULL,
+
+2.2
+    Num INT NOT NULL AUTO_INCREMENT,
+
+2.3
+  1 ALTER TABLE LIVRO DROP Editora;
+  2 ALTER TABLE LIVRO ADD Consevação ENUM('Novo', 'Bom', 'Mau') NOT NULL DEFAULT Bom';
+
+3
+  1 select Nome FROM UTENTE ORDER BY Nome;
+  2 select DISTINCT Nome FROM AUTORES;
+  3 select Nome FROM UTENTE where Sexo = 'M' ORDER BY DataNasc DESC;
+  4 select Nome FROM UTENTE where Sexo = 'F' ORDER BY DataNasc DESC LIMIT 1;
+  5 select ISBN FROM CÓPIA ORDER BY ISBN , NUM;
+  6 select DISTINCT ISBN FROM CÓPIA WHERE EmpUtente IS NOT NULL;
+  7 select ISBN FROM CÓPIA ORDER BY EmpData LIMIT 3;
+
+4
+  1 select COUNT(Num) AS Nº Total de Copias FROM CÓPIA;
+  2 select COUNT(Num) AS 'Nº Total de Copias' FROM CÓPIA WHERE EmpUtente IS NOT NULL;
+  3 select ISBN, COUNT(Num) AS 'Emprestadas' FROM CÓPIA WHERE EmpUtente IS NOT NULL GROUP BY ISBN;
+  4 select ISBN, COUNT(Num) AS 'Emprestadas' FROM CÓPIA WHERE EmpUtente IS NOT NULL GROUP BY ISBN HAVING Emprestadas > 2;
+  5 select MAX(EmpData) AS 'Data Emprestimo' from CÓPIA WHERE EmpData IS NOT NULL GROUP BY ISBN;
+  6 select AVG(TIMESTAMPDIFF(DAY, Empdata, NOW())) AS 'Media' from CÓPIA WHERE EmpData;
+  7 select ISBN, AVG(TIMESTAMPDIFF(DAY, Empdata, NOW())) AS 'Media' from CÓPIA WHERE EmpData IS NOT NULL GROUP BY ISBN;
+
+5
+  1 select U.Nome, C.ISBN, C.EmpData, C.Num FROM UTENTE U, CÓPIA C WHERE C.EmpData IS NOT NULL AND U.Num = C.EmpUtente ORDER BY U.Nome;
+  2 select U.Nome, L.Título, C.ISBN, C.EmpData, C.Num FROM LIVRO L, CÓPIA C, UTENTE U WHERE C.ISBN = L.ISBN AND U.Num = C.EmpUtente ORDER BY U.Nome AND L.Título;
+  3 select L.Título, COUNT(C.ISBN) as 'total copias', COUNT(C.Emputente) as 'copias nao emprestadas', count(C.ISBN)-count(C.Emputente) As 'copias emprestadadas' from LIVRO L, CÓPIA C WHERE C.ISBN = L.ISBN group by C.ISBN;
+
+6
+  1 select título from LIVRO where ISBN in (select ISBN from CÓPIA where Emputente is not null);
+  2 select Nome from UTENTE U where EXISTS (select ISBN FROM CÓPIA WHERE EMPUTENTE = U.NUM);
+  3 SELECT U.NOME, U.NUM FROM UTENTE U WHERE (SELECT COUNT(*) FROM CÓPIA WHERE EMPUTENTE = U.NUM)>1;
+  4

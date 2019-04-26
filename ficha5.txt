@@ -1,0 +1,7 @@
+1. select * from CUSTOMER where country = 'FRANCE' order by name;
+2. select Title, Year from MOVIE where Title LIKE '%Spider-Man%';
+3. select Country, count(Country) As 'NumClientes' from CUSTOMER group by country;
+4. select D.Name As'Department', S.Name from STAFF S, DEPARTMENT D where D.MANAGER = S.STAFFID ORDER BY D.NAME;
+5. SELECT G.Label, COUNT(M.MovieId) AS 'NumMovies' FROM GENRE G, MOVIE_GENRE M WHERE G.GenreId = M.GenreId GROUP BY Label;
+6. select M.Title, M.Year from MOVIE M, MOVIE_ACTOR MA, ACTOR A WHERE M.MovieId = MA.MovieId AND MA.ActorId = A.ActorId AND A.Name = 'Dwayne Johnson' HAVING M.Year >= 2010 ORDER BY M.Year;
+7.
