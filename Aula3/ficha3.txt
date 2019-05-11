@@ -1,0 +1,21 @@
+2.1 INSERT INTO UTENTE(Num, CC, Nome, DataNasc, Sexo, Telefone, Email)
+    VALUES (8, 18848333, 'Mariana Silva', '2000-01-23', 'F', 227348900, NULL);
+
+2.2 select * from UTENTE WHERE CC = 18848333;
+
+2.3 UPDATE CÓPIA
+    SET EmpUtente = (select Num from UTENTE where Nome = 'Mariana Silva'), EmpData = '2019-05-11'
+    WHERE ISBN = (select ISBN from LIVRO WHERE Título = 'Os Lusíadas') AND EmpUtente IS NULL;
+
+2.4 UPDATE CÓPIA
+    SET EmpUtente = NULL, EmpData = NULL
+    WHERE ISBN = (select ISBN from LIVRO WHERE Título = 'Os Lusíadas') AND Num = 1;
+
+2.5 UPDATE CÓPIA SET Estante  = 'E13' WHERE Estante  = 'E12';
+    DELETE FROM PRATELEIRA WHERE Estante = 'E12';
+    DELETE FROM ESTANTE WHERE Código = 'E12';
+
+2.6 select ISBN from LIVRO WHERE Ano > 2010; 
+    select ISBN FROM AUTORES WHERE Nome = 'Fernando Pessoa' OR Nome = 'Luís de Camões';
+    SELECT ISBN FROM CÓPIA WHERE Estante = 'E99' AND Prateleira = 3 AND EmpUtente IS NULL;
+
