@@ -46,6 +46,11 @@
 
 6
   1 select título from LIVRO where ISBN in (select ISBN from CÓPIA where Emputente is not null);
-  2 select Nome from UTENTE U where EXISTS (select ISBN FROM CÓPIA WHERE EMPUTENTE = U.NUM);
+  2 select U.Nome from UTENTE U where 1= (select ISBN FROM CÓPIA WHERE EMPUTENTE = U.NUM);
   3 SELECT U.NOME, U.NUM FROM UTENTE U WHERE (SELECT COUNT(*) FROM CÓPIA WHERE EMPUTENTE = U.NUM)>1;
-  4
+  4 SELECT U.Nome, (SELECT COUNT(ISBN) FROM CÓPIA WHERE EmpUtente = U.Num) AS NumCópias FROM UTENTE U;
+
+7
+  1 DELETE FROM UTENTE WHERE (SELECT COUNT(ISBN) FROM CÓPIA WHERE EmpUtente = UTENTE.Num) = 0;
+  2 DELETE FROM CÓPIA WHERE ISBN = (SELECT ISBN FROM LIVRO WHERE Título = 'Astérix o Gaulês') AND EmpUtente IS NULL;
+  3 

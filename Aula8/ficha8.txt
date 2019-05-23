@@ -1,0 +1,15 @@
+1.
+	1. T1: bfr = 4096/32 = 128
+		B-bfr*R = 4096 - 128 * 32 = 0
+		n = N/bfr = 10000/128 = 78
+	   T2: bfr = 4096/130 = 31
+		B-bfr*R = 4096 - 31 * 130 = 66
+		n = 100000 / 31 = 323 
+	2.  T1
+		log2(78) se for ordenado
+	    78 se não for ordenado 
+	    T2
+	    log2(323) se ordenado
+	    323 se não ordenado
+
+2. T1 
